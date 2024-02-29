@@ -6,17 +6,31 @@
 	"output": {
 		"abi": [
 			{
-				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"internalType": "uint64",
+						"name": "subscriptionId",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
-						"name": "User",
+						"name": "have",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "want",
 						"type": "address"
 					}
 				],
-				"name": "TaskCompleted",
-				"type": "event"
+				"name": "OnlyCoordinatorCanFulfill",
+				"type": "error"
 			},
 			{
 				"inputs": [],
@@ -30,6 +44,67 @@
 				"name": "Register",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "participants",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "Participant",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Points",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "randomWords",
+						"type": "uint256[]"
+					}
+				],
+				"name": "rawFulfillRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "taskPerformedIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -60,12 +135,28 @@
 		"remappings": []
 	},
 	"sources": {
+		"@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol": {
+			"keccak256": "0xa9f8b7e09811f4ac9f421116b5d6bcf50b5748025c0cb012aaf5ff7c39a6b46a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d66b2096987616cda4611c109d9904863872ca5852d736b30f0e19e49afde35f",
+				"dweb:/ipfs/Qmc6jpm3k3YuJG7U2s3FWr81Vk2rdQBhdqD9sA6b8Cr9BE"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol": {
+			"keccak256": "0x3d709a5e0f1f9b8841172b10ba8af785dd51a13eda9fc395723a706e51329904",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://038eef992d813c20737fbe94e3a36e5d541d1aa736158dd2a43dd5b840b8c360",
+				"dweb:/ipfs/QmZWJ25Yr1sUSAsfJRKvTMDmGkmy63hHhB495CUL1bpNz4"
+			]
+		},
 		"contracts/Distribution.sol": {
-			"keccak256": "0x6504dfa3f54b3494571773bad9245294928421089e73965fc6367870ad5cce99",
+			"keccak256": "0x9843d760e74d5a1f24e089afef7505e43328641364fdf94073917d4476be5fa0",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://ce600bc31880d53bf5d06fc2ab278284e5884a5882b0c078a6fa7e8206f1586e",
-				"dweb:/ipfs/QmfZFtaDkY5HeGfKy4tHA8NSQWM22ANJ3JbSqgRPvoJ2n6"
+				"bzz-raw://3d672e764b9e6493b764fc474798fe1afbe14c98a667f5df956e908572233e63",
+				"dweb:/ipfs/QmaQ9eNovNFPvg8YwFCpAVbJDzEFgHWNenEEAzKEoYDixg"
 			]
 		}
 	},
