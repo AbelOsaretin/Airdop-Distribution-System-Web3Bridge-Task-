@@ -1,0 +1,73 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "User",
+						"type": "address"
+					}
+				],
+				"name": "TaskCompleted",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "PerformTask",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Register",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Distribution.sol": "Distribution"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Distribution.sol": {
+			"keccak256": "0x6504dfa3f54b3494571773bad9245294928421089e73965fc6367870ad5cce99",
+			"license": "SEE LICENSE IN LICENSE",
+			"urls": [
+				"bzz-raw://ce600bc31880d53bf5d06fc2ab278284e5884a5882b0c078a6fa7e8206f1586e",
+				"dweb:/ipfs/QmfZFtaDkY5HeGfKy4tHA8NSQWM22ANJ3JbSqgRPvoJ2n6"
+			]
+		}
+	},
+	"version": 1
+}
