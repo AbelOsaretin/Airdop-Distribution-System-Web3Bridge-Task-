@@ -4,7 +4,11 @@ pragma solidity ^0.8.0;
 import {VRFCoordinatorV2Interface} from "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import {VRFConsumerBaseV2} from "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol";
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
 contract Distribution is VRFConsumerBaseV2 {
+    IERC20 public tokenContract;
+
     // VFRConsumer Variables
     VRFCoordinatorV2Interface COORDINATOR;
 
@@ -34,16 +38,20 @@ contract Distribution is VRFConsumerBaseV2 {
 
     address s_owner;
 
-    constructor(uint64 subscriptionId) VRFConsumerBaseV2(vrfCoordinator) {
+    constructor(
+        uint64 subscriptionId,
+        address _tokenCA
+    ) VRFConsumerBaseV2(vrfCoordinator) {
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
         s_owner = msg.sender;
         s_subscriptionId = subscriptionId;
+        tokenContract = IERC20(_tokenCA);
     }
 
     // uint256 public EntriesCounter;
     // uint256 public ParticipantsCounter;
     // address[] public ParticipantsArray;
-    uint256 private RandomNumber;
+    uint256 public RandomNumber;
 
     // mapping(address => address) Participants;
     // mapping(address => bool) HasPerformedTask;
@@ -76,7 +84,7 @@ contract Distribution is VRFConsumerBaseV2 {
         // ParticipantsArray.push(msg.sender);
     }
 
-    function PerformTask() external {
+    function PerformTaskOne() external {
         _performTask(msg.sender, 10);
 
         // require(
@@ -109,6 +117,7 @@ contract Distribution is VRFConsumerBaseV2 {
         participants[index - 1].Points =
             participants[index - 1].Points +
             _point;
+        _sortParticipants();
     }
 
     function _sortParticipants() internal {
@@ -127,6 +136,31 @@ contract Distribution is VRFConsumerBaseV2 {
     function _performDistribution() internal {
         // Call internal Function (_randomWinners) to get the list of randomly selected winners with Chainlink VFR
         // Call internal Function (_airdropRewardCalculation) to get the amount to send to each winner.
+
+        uint256 totalTokensToDistribute = 1000 * 10; // Total tokens to distribute
+        uint256 numberOfTopAddresses = RandomNumber; // Number of top addresses to distribute tokens to
+        tokenContract.approve(address(this), totalTokensToDistribute);
+
+        // Calculate tokens per participant
+        uint256 tokensPerParticipant = totalTokensToDistribute /
+            numberOfTopAddresses;
+
+        // Distribute tokens to top addresses
+        for (uint256 i = 0; i < numberOfTopAddresses; i++) {
+            uint256 adjustedTokens = calculateAdjustedTokens(
+                i + 1,
+                tokensPerParticipant
+            ); // Adjust tokens based on ranking
+            tokenContract.transfer(participants[i].Participant, adjustedTokens);
+        }
+    }
+
+    function calculateAdjustedTokens(
+        uint256 _ranking,
+        uint256 _tokensPerParticipant
+    ) internal view returns (uint256) {
+        // Example: Assign more tokens to higher-ranked participants
+        return _tokensPerParticipant * (RandomNumber - _ranking);
     }
 
     function _randomWinners() internal returns (uint256 requestId) {
@@ -148,5 +182,13 @@ contract Distribution is VRFConsumerBaseV2 {
         RandomNumber = (randomWords[0] % participants.length);
         // s_results[s_rollers[requestId]] = d20Value;
         // emit DiceLanded(requestId, d20Value);
+    }
+
+    function PrepareAirdrop() external onlyOwner {
+        _randomWinners();
+    }
+
+    function Airdrop() external onlyOwner {
+        _performDistribution();
     }
 }

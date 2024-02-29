@@ -27,6 +27,7 @@
   "dependencies": {
     "@chainlink/contracts": "^0.8.0",
     "@chainlink/hardhat-chainlink": "^0.0.4",
-    "@remix-project/remixd": "^0.6.27"
+    "@remix-project/remixd": "^0.6.27",
+    "dotenv": "^16.4.5"
   }
 }

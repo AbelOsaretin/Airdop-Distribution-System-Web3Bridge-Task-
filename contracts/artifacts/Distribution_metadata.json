@@ -11,6 +11,11 @@
 						"internalType": "uint64",
 						"name": "subscriptionId",
 						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "_tokenCA",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -34,9 +39,36 @@
 			},
 			{
 				"inputs": [],
-				"name": "PerformTask",
+				"name": "Airdrop",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "PerformTaskOne",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "PrepareAirdrop",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "RandomNumber",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -106,6 +138,19 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "tokenContract",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -151,12 +196,20 @@
 				"dweb:/ipfs/QmZWJ25Yr1sUSAsfJRKvTMDmGkmy63hHhB495CUL1bpNz4"
 			]
 		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
 		"contracts/Distribution.sol": {
-			"keccak256": "0x9843d760e74d5a1f24e089afef7505e43328641364fdf94073917d4476be5fa0",
+			"keccak256": "0x48a18e684049a52f3960695a91dd08a15f530b5ceb1cc96f0746f7c24cf820d0",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://3d672e764b9e6493b764fc474798fe1afbe14c98a667f5df956e908572233e63",
-				"dweb:/ipfs/QmaQ9eNovNFPvg8YwFCpAVbJDzEFgHWNenEEAzKEoYDixg"
+				"bzz-raw://9dd56b3ab1e77210796ae77df89a08aa30af379f1e131bfb65b4638a8f34771c",
+				"dweb:/ipfs/QmQrLCEsR1Sciz3a75TzuZY3ohLfC57K8U7eEAbGvgW5wA"
 			]
 		}
 	},
